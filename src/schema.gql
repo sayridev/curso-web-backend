@@ -1,0 +1,75 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Event {
+  """Identificador del evento"""
+  id: String!
+  description: String!
+  date: Float!
+  isActive: Boolean!
+  user: User!
+}
+
+type Task {
+  id: String!
+  description: String!
+  status: String!
+  isActive: Boolean!
+  user: User!
+}
+
+type User {
+  id: String!
+  name: String!
+  lastname: String!
+  user: String!
+  email: String!
+  isActive: Boolean!
+  roles: [String!]!
+  events: [Event!]!
+}
+
+type Query {
+  events: [Event!]!
+  event(id: String!): Event!
+  tasks: [Task!]!
+  task(id: String!): Task!
+}
+
+type Mutation {
+  createEvent(createEventInput: CreateEventInput!): Event!
+  updateEvent(updateEventInput: UpdateEventInput!): Event!
+  removeEvent(id: String!): Event!
+  createTask(createTaskInput: CreateTaskInput!): Task!
+  updateTask(updateTaskInput: UpdateTaskInput!): Task!
+  removeTask(id: String!): Task!
+}
+
+input CreateEventInput {
+  description: String!
+  date: Float!
+}
+
+input UpdateEventInput {
+  description: String
+  date: Float
+  id: String!
+}
+
+input CreateTaskInput {
+  description: String!
+  status: StatusTask
+}
+
+enum StatusTask {
+  pendiente
+  progreso
+  completado
+}
+
+input UpdateTaskInput {
+  description: String
+  status: StatusTask
+  id: String!
+}
